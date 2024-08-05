@@ -1,5 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -7,15 +10,31 @@ public class VariableJoystick : Joystick
 {
     public float MoveThreshold { get { return moveThreshold; } set { moveThreshold = Mathf.Abs(value); } }
 
+    public static event Action hitTheBall;
+
     [SerializeField] private float moveThreshold = 1;
     [SerializeField] private JoystickType joystickType = JoystickType.Fixed;
 
     private Vector2 fixedPosition = Vector2.zero;
 
+    public static VariableJoystick Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
     public void SetMode(JoystickType joystickType)
     {
         this.joystickType = joystickType;
-        if(joystickType == JoystickType.Fixed)
+        if (joystickType == JoystickType.Fixed)
         {
             background.anchoredPosition = fixedPosition;
             background.gameObject.SetActive(true);
@@ -33,7 +52,7 @@ public class VariableJoystick : Joystick
 
     public override void OnPointerDown(PointerEventData eventData)
     {
-        if(joystickType != JoystickType.Fixed)
+        if (joystickType != JoystickType.Fixed)
         {
             background.anchoredPosition = ScreenPointToAnchoredPosition(eventData.position);
             background.gameObject.SetActive(true);
@@ -43,10 +62,11 @@ public class VariableJoystick : Joystick
 
     public override void OnPointerUp(PointerEventData eventData)
     {
-        if(joystickType != JoystickType.Fixed)
+        if (joystickType != JoystickType.Fixed)
             background.gameObject.SetActive(false);
 
         base.OnPointerUp(eventData);
+        hitTheBall?.Invoke();
     }
 
     protected override void HandleInput(float magnitude, Vector2 normalised, Vector2 radius, Camera cam)
@@ -58,6 +78,7 @@ public class VariableJoystick : Joystick
         }
         base.HandleInput(magnitude, normalised, radius, cam);
     }
+
 }
 
 public enum JoystickType { Fixed, Floating, Dynamic }
