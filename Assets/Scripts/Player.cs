@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
 
     public void Update()
     {
-        if (GameManager.Instance.gameMode == GameMode.Game)
+        if (GameManager.Instance.GetCurrentGameMode() == GameMode.Game)
         {
             Move();
             Bounds();

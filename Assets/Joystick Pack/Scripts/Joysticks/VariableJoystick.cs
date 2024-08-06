@@ -47,7 +47,7 @@ public class VariableJoystick : Joystick
 
     public void SetActive(bool active)
     {
-        if (GameManager.Instance.gameMode == GameMode.Game)
+        if (GameManager.Instance.GetCurrentGameMode() == GameMode.Game)
         {
             image.raycastTarget = active;
         }

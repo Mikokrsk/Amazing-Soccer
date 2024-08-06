@@ -38,7 +38,7 @@ public class PlayerPosition : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (GameManager.Instance.gameMode == GameMode.MainMenu)
+        if (GameManager.Instance.GetCurrentGameMode() == GameMode.MainMenu)
         {
             Tougle();
         }

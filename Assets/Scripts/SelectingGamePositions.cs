@@ -17,7 +17,7 @@ public class SelectingGamePositions : MonoBehaviour
     {
         playerPositions = GetComponentsInChildren<PlayerPosition>().ToList();
 
-        if (GameManager.Instance.gameMode == GameMode.Game)
+        if (GameManager.Instance.GetCurrentGameMode() == GameMode.Game)
         {
             SetActive(true);
         }

@@ -7,8 +7,9 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject _playersPosition;
     [SerializeField] private List<Player> _playersPositionList;
+    [SerializeField] private LevelItem _currentLevel;
 
-    [field: SerializeField] public GameMode gameMode { get; private set; }
+    [SerializeField] private GameMode _gameMode;
 
     public static event Action goToMainMenu;
     public static event Action startSelectingGamePositionMenu;
@@ -33,20 +34,30 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        gameMode = GameMode.Game;
+        _gameMode = GameMode.Game;
         startPlayGame?.Invoke();
     }
 
     public void PauseGame()
     {
-        gameMode = GameMode.Pause;
+        _gameMode = GameMode.Pause;
         pauseGame?.Invoke();
     }
 
     public void UnpauseGame()
     {
-        gameMode = GameMode.Game;
+        _gameMode = GameMode.Game;
         unpauseGame?.Invoke();
+    }
+
+    public GameMode GetCurrentGameMode()
+    {
+        return _gameMode;
+    }
+
+    public LevelItem GetCurrentLevel()
+    {
+        return _currentLevel;
     }
 
 }
