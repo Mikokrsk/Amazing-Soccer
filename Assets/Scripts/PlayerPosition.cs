@@ -10,13 +10,12 @@ public class PlayerPosition : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Vector2 _areaResponsibilitySize;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private GameObject _player;
+    private bool _isActive;
 
     private void Awake()
     {
-        // _areaResponsibility = GetComponent<BoxCollider2D>();
+        _isActive = false;
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        //   _player = GetComponentInChildren<GameObject>();
-
         _areaResponsibility.offset = _areaResponsibilityOffset;
         _areaResponsibility.size = _areaResponsibilitySize;
     }
@@ -32,9 +31,14 @@ public class PlayerPosition : MonoBehaviour, IPointerClickHandler
         return _areaResponsibility;
     }
 
+    public bool GetActive()
+    {
+        return _isActive;
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (GameManager.Instance.gameMode == GameMode.Game)
+        if (GameManager.Instance.gameMode == GameMode.MainMenu)
         {
             Tougle();
         }
@@ -42,7 +46,9 @@ public class PlayerPosition : MonoBehaviour, IPointerClickHandler
 
     public void Tougle()
     {
-        _player.SetActive(!_player.active);
-        _spriteRenderer.enabled = !_player.active;
+        var active = _player.active;
+        _player.SetActive(!active);
+        _spriteRenderer.enabled = active;
+        _isActive = !active;
     }
 }

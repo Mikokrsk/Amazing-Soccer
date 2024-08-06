@@ -5,6 +5,7 @@ using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class VariableJoystick : Joystick
 {
@@ -14,6 +15,7 @@ public class VariableJoystick : Joystick
 
     [SerializeField] private float moveThreshold = 1;
     [SerializeField] private JoystickType joystickType = JoystickType.Fixed;
+    [SerializeField] private Image image;
 
     private Vector2 fixedPosition = Vector2.zero;
 
@@ -28,6 +30,30 @@ public class VariableJoystick : Joystick
         else
         {
             Instance = this;
+        }
+        image = GetComponent<Image>();
+    }
+
+    private void OnEnable()
+    {
+        GameManager.pauseGame += () => SetActive(false);
+        GameManager.unpauseGame += () => SetActive(true);
+    }
+    private void OnDisable()
+    {
+        GameManager.pauseGame -= () => SetActive(false);
+        GameManager.unpauseGame -= () => SetActive(true);
+    }
+
+    public void SetActive(bool active)
+    {
+        if (GameManager.Instance.gameMode == GameMode.Game)
+        {
+            image.raycastTarget = active;
+        }
+        else
+        {
+            image.raycastTarget = false;
         }
     }
 
@@ -62,6 +88,7 @@ public class VariableJoystick : Joystick
 
     public override void OnPointerUp(PointerEventData eventData)
     {
+
         if (joystickType != JoystickType.Fixed)
             background.gameObject.SetActive(false);
 

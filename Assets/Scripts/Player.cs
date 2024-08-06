@@ -51,8 +51,11 @@ public class Player : MonoBehaviour
 
     public void Update()
     {
-        Move();
-        Bounds();
+        if (GameManager.Instance.gameMode == GameMode.Game)
+        {
+            Move();
+            Bounds();
+        }
     }
 
     private void Move()
