@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class LoadScreen : MonoBehaviour
+public class LoadScreen : GameMenu
 {
     [SerializeField] private GameObject _playButton;
     [SerializeField] private GameObject _loadingBar;
 
-    private void Awake()
+    public override void EnableMenu()
     {
+        base.EnableMenu();
         _loadingBar.SetActive(true);
+        _playButton.SetActive(false);
     }
 
     public void LevelWasLoaded()

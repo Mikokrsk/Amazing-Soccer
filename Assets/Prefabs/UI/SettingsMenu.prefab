@@ -154,7 +154,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6714936031425819743}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
         m_MethodName: UpdateVolumeValue
         m_Mode: 1
@@ -420,8 +420,8 @@ GameObject:
   - component: {fileID: 6078508975241588159}
   - component: {fileID: 3417002754898602797}
   - component: {fileID: 5154492143819277200}
-  - component: {fileID: 6714936031425819743}
   - component: {fileID: 8657853623157891011}
+  - component: {fileID: 6244146057854798491}
   m_Layer: 5
   m_Name: SettingsMenu
   m_TagString: Untagged
@@ -477,24 +477,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
---- !u!114 &6714936031425819743
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3415180526114202212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 763d26c0f6bf855438cb45851efa0ff9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _volumeValue: 0
-  _volumeValueSlider: {fileID: 2967718294043292242}
-  _muteSoundImage: {fileID: 21300000, guid: 6d864a248d4ca9a40acb201a9d0cddc3, type: 3}
-  _unmuteSoundImage: {fileID: 21300000, guid: 42743c6f57108a7448bacaf1b739bdac, type: 3}
-  _soundImage: {fileID: 259750407223855631}
-  _soundSource: {fileID: 8657853623157891011}
 --- !u!82 &8657853623157891011
 AudioSource:
   m_ObjectHideFlags: 0
@@ -505,7 +487,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 033766cc31c97904bae4404b8a079544, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9508f6c2b21a7da4dbe8aaf9158c64ea, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -591,6 +573,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6244146057854798491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3415180526114202212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32eb7e937a26105498e12e9dd1d372cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _volumeValue: 0
+  _volumeValueSlider: {fileID: 2967718294043292242}
+  _muteSoundImage: {fileID: 21300000, guid: 6d864a248d4ca9a40acb201a9d0cddc3, type: 3}
+  _unmuteSoundImage: {fileID: 21300000, guid: 42743c6f57108a7448bacaf1b739bdac, type: 3}
+  _soundImage: {fileID: 259750407223855631}
+  _soundSource: {fileID: 8657853623157891011}
 --- !u!1 &4308653271769999886
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,8 +659,7 @@ MonoBehaviour:
   m_text: Setting
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e65e24830db31db4dba9cb49f27f77bf, type: 2}
-  m_sharedMaterial: {fileID: -7735024553965323632, guid: e65e24830db31db4dba9cb49f27f77bf,
-    type: 2}
+  m_sharedMaterial: {fileID: -7735024553965323632, guid: e65e24830db31db4dba9cb49f27f77bf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1330,7 +1329,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6714936031425819743}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
         m_MethodName: ToggleSound
         m_Mode: 1

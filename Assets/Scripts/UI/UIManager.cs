@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private WarningMessageMenu _warningMessageMenu;
     [SerializeField] private GameObject _GameUI;
 
-    //   [SerializeField] private LevelLoadManager _levelLoadManager;
+    [SerializeField] private LoadScreen _loadScreen;
 
     [SerializeField] private GameManager _gameManager;
 
@@ -40,11 +40,25 @@ public class UIManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         var level = _gameManager.GetCurrentLevel();
+        SceneManager.sceneLoaded += OnSceneLoaded;
 
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (_gameManager.GetCurrentGameMode() == GameMode.MainMenu)
+        {
+            OpenLoadScreenMenu();
+        }
+        else
+        {
+            CloseLoadScreenMenu();
+        }
+        /*
         if (level.name == "Tutorial Level")
         {
             _tutorialMenu.EnableMenu();
-        }
+        }*/
     }
 
     public void OpenShopMenus()
@@ -148,15 +162,15 @@ public class UIManager : MonoBehaviour
         CloseMenu(_tutorialMenu);
     }
 
-    /*    public void OpenControlButtonsMenu()
-        {
-            OpenMenu(_controlButtonsMenu);
-        }
-        public void CloseControlButtonsMenu()
-        {
-            CloseMenu(_controlButtonsMenu);
-        }
-    */
+    public void OpenLoadScreenMenu()
+    {
+        OpenMenu(_loadScreen);
+    }
+    public void CloseLoadScreenMenu()
+    {
+        CloseMenu(_loadScreen);
+    }
+
     public void OpenWarningMessageMenu()
     {
         OpenMenu(_warningMessageMenu);

@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject _playersPosition;
     [SerializeField] private List<Player> _playersPositionList;
     [SerializeField] private LevelItem _currentLevel;
-
+    [SerializeField] private LevelLoadManager _levelLoadManager;
     [SerializeField] private GameMode _gameMode;
 
     public static event Action goToMainMenu;
@@ -30,6 +31,22 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            _gameMode = GameMode.MainMenu;
+        }
+        else
+        {
+            _gameMode = GameMode.Game;
+        }
+
+        _levelLoadManager.FadeOut();
     }
 
     public void StartGame()
