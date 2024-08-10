@@ -154,7 +154,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6244146057854798491}
         m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
         m_MethodName: UpdateVolumeValue
         m_Mode: 1
@@ -473,7 +473,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3415180526114202212}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -1329,7 +1329,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6244146057854798491}
         m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
         m_MethodName: ToggleSound
         m_Mode: 1
